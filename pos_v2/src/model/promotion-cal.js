@@ -1,12 +1,30 @@
 function PromotionCal() {
-  this.promotion = null;
+
+  // var init = function(promotionType, promotion) {
+  //
+  //   var allPromotions = loadPromotions();
+  //
+  //   for(var i=0; i < allPromotions.length; i++){
+  //
+  //     if(allPromotions[i].type === promotionType){
+  //
+  //       promotion = allPromotions[i];
+  //       break;
+  //
+  //     }
+  //   }
+  // };
+
+  this.promotion ;
+
+  //init(promotionType, this.promotion);
 }
 
 PromotionCal.prototype.init = function(promotionType) {
 
   var allPromotions = loadPromotions();
 
-  for(var i=0; i<allPromotions.length; i++){
+  for(var i=0; i < allPromotions.length; i++){
 
     if(allPromotions[i].type === promotionType){
 
@@ -17,13 +35,13 @@ PromotionCal.prototype.init = function(promotionType) {
   }
 };
 
-PromotionCal.prototype.cartitemPromotionnum = function(cartitem) {
+PromotionCal.prototype.cartItemPromotionnum = function(cartItem) {
 
-  for(var i = 0; i < this.promotion.barcodes.length; i++) {
+  for(var j = 0; j < this.promotion.barcodes.length; j++) {
 
-    if(cartitem.item.barcode === this.promotion.barcodes[i]) {
+    if(cartItem.item.barcode === this.promotion.barcodes[j]) {
 
-      cartitem.promotionNum = parseInt(cartitem.num/3);
+      cartItem.promotionNum = parseInt(cartItem.num/3);
       break;
 
     }

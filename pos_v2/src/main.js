@@ -1,20 +1,20 @@
 function printInventory (inputs) {
 
   var scanner = new BarcodeScanner();
-  var cart = new Cart();
+  var barcodelist = scanner.scan(inputs);
 
-  var pos = new Pos(scanner, cart);
-
-  var barcodelist = pos.scanner.scan(inputs);
-
-  pos.cart.init(barcodelist);
+  var cart = new Cart(barcodelist);
 
   var promotioncal = new PromotionCal();
   promotioncal.init('BUY_TWO_GET_ONE_FREE');
 
-  for(var i = 0; i < pos.cart.cartitemList.length; i++)
-    promotioncal.cartitemPromotionnum(pos.cart.cartitemList[i]);
+  for(var i = 0; i < cart.getCartItemList().length; i++) {
+    var cartItemlist = cart.getCartItemList();
+    promotioncal.cartItemPromotionnum(cartItemlist[i]);
+  }
 
+  var pos = new Pos(scanner, cart);
+  
   var result = pos.titlePrint();
   result += pos.commonPrint();
   result += pos.givePrint();

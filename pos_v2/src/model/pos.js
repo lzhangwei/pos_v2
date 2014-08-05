@@ -7,7 +7,6 @@ function Pos(scanner,cart){
 
 Pos.prototype.titlePrint = function() {
 
-  //var mf = new MyFormat();
   var date = MyFormat.dateformat(new Date());
 
   var result = '***<没钱赚商店>购物清单***\n' + '打印时间：' + date + '\n';
@@ -17,25 +16,25 @@ Pos.prototype.titlePrint = function() {
 
 Pos.prototype.commonPrint = function() {
   var result = '----------------------\n';
-  for(var i = 0; i < this.cart.cartitemList.length; i++){
-      result += '名称：' + this.cart.cartitemList[i].item.name
-                + '，数量：' + this.cart.cartitemList[i].num + this.cart.cartitemList[i].item.unit
-                + '，单价：' + this.cart.cartitemList[i].item.price.toFixed(2)
-                + '(元)，小计：' + this.cart.cartitemList[i].smallCal().toFixed(2)
+  for(var i = 0; i < this.cart.getCartItemList().length; i++){
+      result += '名称：' + this.cart.getCartItemList()[i].item.name
+                + '，数量：' + this.cart.getCartItemList()[i].num + this.cart.getCartItemList()[i].item.unit
+                + '，单价：' + this.cart.getCartItemList()[i].item.price.toFixed(2)
+                + '(元)，小计：' + this.cart.getCartItemList()[i].smallCal().toFixed(2)
                 + '(元)\n';
-      this.sumPrice +=  this.cart.cartitemList[i].smallCal();
+      this.sumPrice +=  this.cart.getCartItemList()[i].smallCal();
   }
   return result;
 };
 
 Pos.prototype.givePrint = function() {
   var result = '----------------------\n挥泪赠送商品：\n';
-  for(var i = 0; i < this.cart.cartitemList.length; i++){
-    if(this.cart.cartitemList[i].promotionNum > 0){
-      result += '名称：' + this.cart.cartitemList[i].item.name + '，数量：'
-                + this.cart.cartitemList[i].promotionNum + this.cart.cartitemList[i].item.unit
+  for(var i = 0; i < this.cart.getCartItemList().length; i++){
+    if(this.cart.getCartItemList()[i].promotionNum > 0){
+      result += '名称：' + this.cart.getCartItemList()[i].item.name + '，数量：'
+                + this.cart.getCartItemList()[i].promotionNum + this.cart.getCartItemList()[i].item.unit
                 + '\n';
-      this.savePrice +=  this.cart.cartitemList[i].promotionNum * this.cart.cartitemList[i].item.price;
+      this.savePrice +=  this.cart.getCartItemList()[i].promotionNum * this.cart.getCartItemList()[i].item.price;
     }
   }
   return result;
