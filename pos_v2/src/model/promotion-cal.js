@@ -39,7 +39,7 @@ PromotionCal.prototype.cartItemPromotionnum = function(cartItem) {
 
   for(var j = 0; j < this.promotion.barcodes.length; j++) {
 
-    if(cartItem.item.barcode === this.promotion.barcodes[j]) {
+    if(cartItem.getBarcode() === this.promotion.barcodes[j]) {
 
       cartItem.promotionNum = parseInt(cartItem.num/3);
       break;

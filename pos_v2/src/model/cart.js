@@ -22,7 +22,7 @@ function Cart(barcodelist){
 
       for(var j = 0; j < i; j++){
 
-        if(cartItemList[j].item.barcode === cartItemList[i].item.barcode){
+        if(cartItemList[j].getBarcode() === cartItemList[i].getBarcode()){
           cartItemList[j].num += cartItemList[i].num;
           cartItemList.splice(i,1);
           i--;
