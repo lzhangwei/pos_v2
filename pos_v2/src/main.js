@@ -9,17 +9,12 @@ function printInventory (inputs) {
   promotioncal.init('BUY_TWO_GET_ONE_FREE');
 
   for(var i = 0; i < cart.getCartItemList().length; i++) {
-    var cartItemlist = cart.getCartItemList();
-    promotioncal.cartItemPromotionnum(cartItemlist[i]);
+    promotioncal.cartItemPromotionnum(cart.getCartItemList()[i]);
   }
 
-  var pos = new Pos(scanner, cart);
-  
-  var result = pos.titlePrint();
-  result += pos.commonPrint();
-  result += pos.givePrint();
-  result += pos.pricePrint();
+  var pos = new Pos(cart);
 
-  console.log(result);
+  console.log(pos.titlePrint() + pos.commonPrint()
+              + pos.givePrint() + pos.pricePrint());
 
 }

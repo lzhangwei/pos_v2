@@ -1,5 +1,4 @@
-function Pos(scanner,cart){
-  this.scanner = scanner;
+function Pos(cart){
   this.cart = cart;
   this.sumPrice = 0;
   this.savePrice = 0;
