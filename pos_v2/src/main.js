@@ -1,19 +1,25 @@
 function printInventory (inputs) {
-  var input = new InputPrase(inputs);
-  var barnum = input.prase();
 
-  var cart = new Cart(barnum);
-  var itemlist = cart.init();
+  var scanner = new BarcodeScanner();
+  var cart = new Cart();
 
-  var mf = new MyFormat();
-  var date = mf.dateformat(new Date());
+  var pos = new Pos(scanner, cart);
 
-  var inven = new Inventory(date);
+  var barcodelist = pos.scanner.scan(inputs);
 
-  var result = inven.titlePrint();
-  result += inven.commonPrint(itemlist);
-  result += inven.givePrint(itemlist);
-  result += inven.pricePrint();
+  pos.cart.init(barcodelist);
+
+  var promotioncal = new PromotionCal();
+  promotioncal.init('BUY_TWO_GET_ONE_FREE');
+
+  for(var i = 0; i < pos.cart.cartitemList.length; i++)
+    promotioncal.cartitemPromotionnum(pos.cart.cartitemList[i]);
+
+  var result = pos.titlePrint();
+  result += pos.commonPrint();
+  result += pos.givePrint();
+  result += pos.pricePrint();
 
   console.log(result);
+
 }
