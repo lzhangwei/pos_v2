@@ -7,8 +7,8 @@ function Pos(scanner,cart){
 
 Pos.prototype.titlePrint = function() {
 
-  var mf = new MyFormat();
-  var date = mf.dateformat(new Date());
+  //var mf = new MyFormat();
+  var date = MyFormat.dateformat(new Date());
 
   var result = '***<没钱赚商店>购物清单***\n' + '打印时间：' + date + '\n';
 
